@@ -28,11 +28,6 @@ function NavbarCollapse() {
                 <NavLink to='/cart' className="nav-link">Cart</NavLink>
               </NavItem>
             </li>
-            <li class="nav-item">
-              <NavItem className="nav-item">
-                <NavLink to='/register' className="nav-link">Register</NavLink>
-              </NavItem>
-            </li>
           </ul>
         </div>
         <div class="mx-auto order-0">

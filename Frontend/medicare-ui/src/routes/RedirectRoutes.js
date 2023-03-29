@@ -1,5 +1,6 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import About from '../components/About';
+import AdminLogin from '../components/AdminLogin';
 import Cart from '../components/Cart';
 import Home from '../components/Home';
 import Login from '../components/Login';
@@ -15,10 +16,11 @@ function RedirectRoutes() {
             <Routes>
                 <Route index exact element={<Home />} />
                 <Route path='/login' exact element={<Login />} />
+                <Route path='/admin-login' exact element={<AdminLogin />} />
                 <Route path='/register' exact element={<Register />} />
                 <Route path='/medicine' exact element={<Medicine />} />
                 <Route path='/about' exact element={<About />} />
-                <Route path='/cart' exact element={<Cart />} />
+                <Route path='/cart' exact element={<Cart />} />                
             </Routes>
         </BrowserRouter>
     );

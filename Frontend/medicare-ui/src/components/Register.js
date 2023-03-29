@@ -48,7 +48,7 @@ function Register() {
                                 <h6 className="">Alredy a member? <NavLink to='/login' className="ml-1">Login</NavLink></h6>
                             </div>
                             <div class="text-center">
-                                <h6>Admin Login? <a href="#!">Click here</a></h6>
+                                <h6>Admin Login? <NavLink to='/admin-login' className="ml-1">click here</NavLink></h6>
                             </div>
                         </form>
                     </div>

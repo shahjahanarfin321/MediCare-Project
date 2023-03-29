@@ -3,7 +3,7 @@ import { useState } from "react";
 import { NavItem } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-function Login() {
+function AdminLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     return (
@@ -12,7 +12,7 @@ function Login() {
                 <div class="container-fluid h-100">
                     <div class="row h-100 justify-content-center align-items-center">
                         <form>
-                            <h2 className='mb-4'>Login</h2>
+                            <h2 className='mb-4'>Admin Login</h2>
                             {/* <!-- Email input --> */}
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form2Example1">Email</label>
@@ -30,14 +30,8 @@ function Login() {
                             {/* <!-- Submit button --> */}
                             <button type="submit" class="btn btn-primary btn-block mb-4" >Sign in</button>
 
-                            {/* <!-- Register buttons --> */}
                             <div class="text-center">
-                                <h6 className="">Not a member?
-                                        <NavLink to='/register' className="ml-1">Register</NavLink>
-                                </h6>
-                            </div>
-                            <div class="text-center">
-                                <h6>Admin Login? <NavLink to='/admin-login' className="ml-1">click here</NavLink></h6>
+                                <h6>User Login? <NavLink to='/login' className="ml-1">click here</NavLink></h6>
                             </div>
                         </form>
                     </div>
@@ -46,4 +40,4 @@ function Login() {
         </div>
     );
 }
-export default Login;
+export default AdminLogin;
