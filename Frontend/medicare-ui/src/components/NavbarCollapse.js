@@ -10,7 +10,7 @@ function NavbarCollapse() {
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <NavItem className="nav-item">
-                <NavLink to='/home' className="nav-link">Home</NavLink>
+                <NavLink to='/' className="nav-link">Home</NavLink>
               </NavItem>
             </li>
             <li class="nav-item">
@@ -28,6 +28,11 @@ function NavbarCollapse() {
                 <NavLink to='/cart' className="nav-link">Cart</NavLink>
               </NavItem>
             </li>
+            <li class="nav-item">
+              <NavItem className="nav-item">
+                <NavLink to='/register' className="nav-link">Register</NavLink>
+              </NavItem>
+            </li>
           </ul>
         </div>
         <div class="mx-auto order-0">
@@ -40,7 +45,7 @@ function NavbarCollapse() {
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <NavItem className="nav-item">
-                <NavLink to='/' className="nav-link">Login</NavLink>
+                <NavLink to='/login' className="nav-link">Login</NavLink>
               </NavItem>
             </li>
           </ul>

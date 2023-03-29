@@ -5,6 +5,7 @@ import Home from '../components/Home';
 import Login from '../components/Login';
 import Medicine from '../components/Medicine';
 import NavbarCollapse from '../components/NavbarCollapse';
+import Register from '../components/Register';
 
 
 function RedirectRoutes() {
@@ -12,8 +13,9 @@ function RedirectRoutes() {
         <BrowserRouter>
             <NavbarCollapse />
             <Routes>
-                <Route index exact element={<Login />} />
-                <Route path='/home' exact element={<Home />} />
+                <Route index exact element={<Home />} />
+                <Route path='/login' exact element={<Login />} />
+                <Route path='/register' exact element={<Register />} />
                 <Route path='/medicine' exact element={<Medicine />} />
                 <Route path='/about' exact element={<About />} />
                 <Route path='/cart' exact element={<Cart />} />
