@@ -5,6 +5,7 @@ import Cart from '../components/Cart';
 import Home from '../components/Home';
 import Login from '../components/Login';
 import Medicine from '../components/Medicine';
+import MedicinesList from '../components/MedicinesList';
 import NavbarCollapse from '../components/NavbarCollapse';
 import Register from '../components/Register';
 

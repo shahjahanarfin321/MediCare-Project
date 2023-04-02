@@ -1,7 +1,8 @@
 import axios from "axios";
-import React from "react";
+import React, { Component } from "react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import UserService from "../service/MedicineService";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -25,6 +26,18 @@ function Login() {
                 console.log(error);
             });
     }
+
+
+    // const handleLoginSubmit = UserService.getUsersLogin(email,password).then(response => {
+    //     // If the user is logged in, redirect to the dashboard page
+    //     if (response.data) {
+    //         localStorage.setItem('userId', response.data.userId);
+    //         localStorage.setItem('email', response.data.email);
+    //         navigate('/medicine');
+    //         // window.location.href="/medicine";
+    //     }
+    // }
+    // );
 
 
 
