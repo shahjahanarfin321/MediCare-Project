@@ -1,4 +1,4 @@
-package com.ey.medicare.entity.UsersEntity;
+package com.ey.medicare.users.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
