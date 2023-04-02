@@ -17,8 +17,8 @@ function Login() {
                 if (response.data) {
                     localStorage.setItem('userId', response.data.userId);
                     localStorage.setItem('email', response.data.email);
-                    // navigate('/medicine');
-                    window.location.href="/medicine";
+                    navigate('/medicine');
+                    // window.location.href="/medicine";
                 }
             })
             .catch(error => {
