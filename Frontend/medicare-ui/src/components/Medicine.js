@@ -25,6 +25,10 @@ function Medicine() {
   const [medicines, setMedicines] = useState([]);
 
   useEffect(() => {
+    fetchMedicines();
+  }, []);
+
+  const fetchMedicines = () => {
     axios.get('http://localhost:9090/medicine/all-medicines')
       .then(response => {
         setMedicines(response.data);
@@ -32,7 +36,7 @@ function Medicine() {
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }
 
   const handleSortByName = () => {
     const sortedMedicines = [...medicines].sort((a, b) =>
@@ -41,12 +45,19 @@ function Medicine() {
     setMedicines(sortedMedicines);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchMedicines();
+    }, 2000); // fetch medicines every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Container className="my-5">
       <div className="d-flex justify-content-between align-items-center">
         <h1 className="mb-0">Medicines</h1>
         <Button variant="primary" onClick={handleSortByName}>
-          {/* <FaSort /> */}
           Sort
         </Button>
       </div>
@@ -58,6 +69,45 @@ function Medicine() {
     </Container>
   );
 }
+
+
+// function Medicine() {
+//   const [medicines, setMedicines] = useState([]);
+
+//   useEffect(() => {
+//     axios.get('http://localhost:9090/medicine/all-medicines')
+//       .then(response => {
+//         setMedicines(response.data);
+//       })
+//       .catch(error => {
+//         console.log(error);
+//       });
+//   }, []);
+
+//   const handleSortByName = () => {
+//     const sortedMedicines = [...medicines].sort((a, b) =>
+//       a.medicineName.localeCompare(b.medicineName)
+//     );
+//     setMedicines(sortedMedicines);
+//   };
+
+//   return (
+//     <Container className="my-5">
+//       <div className="d-flex justify-content-between align-items-center">
+//         <h1 className="mb-0">Medicines</h1>
+//         <Button variant="primary" onClick={handleSortByName}>
+//           {/* <FaSort /> */}
+//           Sort
+//         </Button>
+//       </div>
+//       <Row>
+//         {medicines.map((medicine) => (
+//           <MedicineCard key={medicine.medicineId} {...medicine} />
+//         ))}
+//       </Row>
+//     </Container>
+//   );
+// }
 
 export default Medicine;
 
