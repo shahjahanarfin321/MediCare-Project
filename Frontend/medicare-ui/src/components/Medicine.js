@@ -6,7 +6,7 @@ function MedicineCard({ medicineName, medicinePrice, medicineStock }) {
   return (
     <Col md={4}>
       <Card className="mb-4">
-        {/* <Card.Img variant="top" src={imageUrl} /> */}
+        <Card.Img variant="top" src="https://via.placeholder.com/400x400" />
         <Card.Body>
           <Card.Title>{medicineName}</Card.Title>
           <Card.Text>
