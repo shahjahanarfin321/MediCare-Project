@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MedicineService {
@@ -22,5 +23,9 @@ public class MedicineService {
 
     public Medicines saveMedicine(Medicines medicines) {
         return medicineRepository.save(medicines);
+    }
+
+    public Optional<Object> findByMedicineId(Long medicineId) {
+        return Optional.ofNullable(medicineRepository.findByMedicineId(medicineId));
     }
 }
