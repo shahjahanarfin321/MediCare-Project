@@ -1,10 +1,11 @@
-package com.ey.medicare.service.UsersService;
+package com.ey.medicare.users.service;
 
-import com.ey.medicare.entity.UsersEntity.Users;
-import com.ey.medicare.repository.UsersRepository.UsersRepository;
+import com.ey.medicare.users.entity.Users;
+import com.ey.medicare.users.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UsersService {
@@ -17,5 +18,9 @@ public class UsersService {
 
     public Users loginUsers(String email, String password) {
         return usersRepository.findByEmailAndPassword(email,password);
+    }
+
+    public Optional<Object> findByUserId(Long userId) {
+        return usersRepository.findByUserId(userId);
     }
 }
