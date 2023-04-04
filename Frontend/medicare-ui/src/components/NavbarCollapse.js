@@ -37,8 +37,8 @@ function NavbarCollapse() {
                   </li>
                   <li className="nav-item">
                     <NavItem className="nav-item">
-                      <NavLink to="/about" className="nav-link">
-                        About
+                      <NavLink to="/appointment" className="nav-link">
+                        Appointment
                       </NavLink>
                     </NavItem>
                   </li>
@@ -46,6 +46,34 @@ function NavbarCollapse() {
                     <NavItem className="nav-item">
                       <NavLink to="/cart" className="nav-link">
                         Cart
+                      </NavLink>
+                    </NavItem>
+                  </li>
+                  <li className="nav-item">
+                    <NavItem className="nav-item">
+                      <NavLink to="/test" className="nav-link">
+                        Health Test
+                      </NavLink>
+                    </NavItem>
+                  </li>
+                  <li className="nav-item">
+                    <NavItem className="nav-item">
+                      <NavLink to="/healthlibrary" className="nav-link">
+                        Health Library
+                      </NavLink>
+                    </NavItem>
+                  </li>
+                  <li className="nav-item">
+                    <NavItem className="nav-item">
+                      <NavLink to="/healthconcerns" className="nav-link">
+                        Health Concerns
+                      </NavLink>
+                    </NavItem>
+                  </li>
+                  <li className="nav-item">
+                    <NavItem className="nav-item">
+                      <NavLink to="/about" className="nav-link">
+                        About
                       </NavLink>
                     </NavItem>
                   </li>

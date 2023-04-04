@@ -1,0 +1,18 @@
+.tabs-container {
+    width: 100%;
+}
+
+.tab-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.tab-content>.mb-4 {
+
+    padding-right: 20px;
+}
+
+.tab-content>.mb-4:last-child {
+    padding-right: 0;
+}

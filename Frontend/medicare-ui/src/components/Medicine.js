@@ -10,7 +10,7 @@ function MedicineCard({ medicineName, medicinePrice, medicineStock, medicineId, 
   return (
     <Col md={4}>
       <Card className="mb-4">
-        <Card.Img variant="top" src="https://via.placeholder.com/400x400" />
+        <Card.Img variant="top" src="https://via.placeholder.com/200x200" />
         <Card.Body>
           <Card.Title>{medicineName}</Card.Title>
           <Card.Text>
@@ -68,7 +68,7 @@ function Medicine() {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchMedicines();
-    }, 2000); // fetch medicines every 5 seconds
+    }, 20000); // fetch medicines every 5 seconds
 
     return () => clearInterval(interval);
   }, []);

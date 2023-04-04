@@ -1,9 +1,6 @@
 package com.ey.medicare.medicines.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Medicines {
@@ -14,6 +11,9 @@ public class Medicines {
     private Long medicinePrice;
     private Long medicineStock;
 
+    @Lob
+    private byte[] imageData;
+
     //No Args Constructor
     public Medicines() {
     }
@@ -23,6 +23,12 @@ public class Medicines {
         this.medicineName = medicineName;
         this.medicinePrice = medicinePrice;
         this.medicineStock = medicineStock;
+    }
+    public Medicines(String medicineName, Long medicinePrice, Long medicineStock, byte[] imageData) {
+        this.medicineName = medicineName;
+        this.medicinePrice = medicinePrice;
+        this.medicineStock = medicineStock;
+        this.imageData = imageData;
     }
 
     // Getters
@@ -42,6 +48,10 @@ public class Medicines {
         return medicineStock;
     }
 
+    public byte[] getImageData() {
+        return imageData;
+    }
+
     //Setters
     public void setMedicineId(Long medicineId) {
         this.medicineId = medicineId;
@@ -57,5 +67,9 @@ public class Medicines {
 
     public void setMedicineStock(Long medicineStock) {
         this.medicineStock = medicineStock;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
     }
 }
