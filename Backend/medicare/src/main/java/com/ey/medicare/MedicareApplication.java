@@ -10,4 +10,5 @@ public class MedicareApplication {
 		SpringApplication.run(MedicareApplication.class, args);
 	}
 
+
 }

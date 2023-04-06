@@ -1,203 +1,54 @@
-import React, { useState } from 'react';
-import { Tabs, Tab, Container, Row, Col, Card } from 'react-bootstrap';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { Container, Col, Card } from 'react-bootstrap';
 import '../css/style.css';
+import staticImage from '../images/medicine.jpg';
 
 function HealthLibrary() {
-    const [activeTab, setActiveTab] = useState('allAilments');
+    const [blogData, setBlogData] = useState([]);
+
+    useEffect(() => {
+        fetchBlogs();
+      }, []);
+    
+      const fetchBlogs = () => {
+        axios.get(`http://localhost:9090/blog/get-all-blogs`)
+          .then(response => {
+            setBlogData(response.data);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+
+    const renderCards = (blogData) => {
+        return blogData.map((blog) => {
+            return (
+                <Col md={4} className="mb-4" key={blog.id}>
+                    <Card>
+                        {/* <Card.Img variant="top" src={staticImage} /> */}
+                        <img src={blog.imageLink} alt="car" />
+                        <Card.Body>
+                            <Card.Title>{blog.title}</Card.Title>
+                            <Card.Text>
+                                {blog.description}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            );
+        });
+    };
 
     return (
         <Container className="my-4">
             <h1 className="text-left">Health Library</h1>
-            <Tabs activeKey={activeTab} onSelect={(key) => setActiveTab(key)} className="mt-4 tabs-container">
-                <Tab eventKey="allAilments" title="All Ailments">
-                    <Row className="tab-content">
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Tab>
-                <Tab eventKey="beautyFitness" title="Beauty & Fitness">
-                    <Row className="tab-content">
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Tab>
-
-                <Tab eventKey="foodWellness" title="Food & Wellness">
-                    <Row>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Tab>
-                <Tab eventKey="inTheNews" title="In The News">
-                    <Row>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Tab>
-                <Tab eventKey="petCare" title="Pet Care">
-                    <Row>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-
-                        </Col>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={4} className="mb-4">
-                            <Card>
-                                <Card.Img variant="top" src="https://via.placeholder.com/300x200" />
-                                <Card.Body>
-                                    <Card.Title>Post Title</Card.Title>
-                                    <Card.Text>
-                                        This is a short description of the post. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Tab>
-            </Tabs>
+            
+            <Container className="mt-4">
+                {renderCards(blogData)}
+            </Container>
         </Container>
     );
 }
+
 export default HealthLibrary;

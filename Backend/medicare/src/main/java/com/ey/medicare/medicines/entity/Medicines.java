@@ -10,25 +10,18 @@ public class Medicines {
     private String medicineName;
     private Long medicinePrice;
     private Long medicineStock;
-
-    @Lob
-    private byte[] imageData;
+    private String imageLink;
 
     //No Args Constructor
     public Medicines() {
     }
 
     //All Args Constructor
-    public Medicines(String medicineName, Long medicinePrice, Long medicineStock) {
+    public Medicines(String medicineName, Long medicinePrice, Long medicineStock,String imageLink) {
         this.medicineName = medicineName;
         this.medicinePrice = medicinePrice;
         this.medicineStock = medicineStock;
-    }
-    public Medicines(String medicineName, Long medicinePrice, Long medicineStock, byte[] imageData) {
-        this.medicineName = medicineName;
-        this.medicinePrice = medicinePrice;
-        this.medicineStock = medicineStock;
-        this.imageData = imageData;
+        this.imageLink = imageLink;
     }
 
     // Getters
@@ -48,8 +41,8 @@ public class Medicines {
         return medicineStock;
     }
 
-    public byte[] getImageData() {
-        return imageData;
+    public String getImageLink() {
+        return imageLink;
     }
 
     //Setters
@@ -69,7 +62,7 @@ public class Medicines {
         this.medicineStock = medicineStock;
     }
 
-    public void setImageData(byte[] imageData) {
-        this.imageData = imageData;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 }
