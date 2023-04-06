@@ -14,26 +14,29 @@ function LabTestList() {
   }, []);
 
   return (
-    <Table striped bordered hover responsive>
-      <thead>
-        <tr>
-          <th>Test Type</th>
-          <th>Full Name</th>
-          <th>Mobile Number</th>
-          <th>Pin Code</th>
-        </tr>
-      </thead>
-      <tbody>
-        {labTests.map(labTest => (
-          <tr key={labTest.testId}>
-            <td>{labTest.testType}</td>
-            <td>{labTest.fullName}</td>
-            <td>{labTest.mobileNumber}</td>
-            <td>{labTest.pinCode}</td>
+    <div className="my-4 px-3">
+      <h3 className="text-left">Lab Test Report</h3>
+      <Table striped bordered hover responsive>
+        <thead>
+          <tr>
+            <th>Test Type</th>
+            <th>Full Name</th>
+            <th>Mobile Number</th>
+            <th>Pin Code</th>
           </tr>
-        ))}
-      </tbody>
-    </Table>
+        </thead>
+        <tbody>
+          {labTests.map(labTest => (
+            <tr key={labTest.testId}>
+              <td>{labTest.testType}</td>
+              <td>{labTest.fullName}</td>
+              <td>{labTest.mobileNumber}</td>
+              <td>{labTest.pinCode}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
   );
 }
 

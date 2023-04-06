@@ -52,9 +52,9 @@ function DoctorAppointment() {
       <h1 className="mb-4">Appointment with Doctor</h1>
       <div className="row">
         {appointments.map((appointment) => (
-          <div className="col-md-4" key={appointment.id}>
-            <Card className="mb-4" onClick={() => handleSelectAppointment(appointment)}>
-              <Card.Img variant="top" src={appointment.imageLink} />
+          <div className="col-md-3" key={appointment.id}>
+            <Card className="mb-3" onClick={() => handleSelectAppointment(appointment)}>
+            <Card.Img variant="top" src={appointment.imageLink} style={{ height: '150px', objectFit: 'cover' }} />
               <Card.Body>
                 <Card.Title>{appointment.doctorName}</Card.Title>
                 <Card.Text>{appointment.category}</Card.Text>

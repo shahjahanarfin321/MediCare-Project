@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Card, Button, Form } from "react-bootstrap";
 
@@ -8,55 +9,33 @@ const HealthConcerns = () => {
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        const cardData = [
-            {
-                title: "Lungs Care",
-                endpoint: "https://example.com/lungs-care",
-            },
-            {
-                title: "Weight Care",
-                endpoint: "https://example.com/weight-care",
-            },
-            {
-                title: "Women's Care",
-                endpoint: "https://example.com/womens-care",
-            },
-            {
-                title: "Bone and Joint Pain",
-                endpoint: "https://example.com/bone-and-joint-pain",
-            },
-            {
-                title: "Cold and Fever",
-                endpoint: "https://example.com/cold-and-fever",
-            },
-        ];
-
-        setCards(cardData);
+        fetchConcerns();
     }, []);
 
-    const handleCardClick = (title, endpoint) => {
+    const fetchConcerns = () => {
+        axios.get('http://localhost:9090/healthconcern/get-all-concerns')
+            .then(response => {
+                setCards(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    const handleCardClick = (title) => {
         setQuestion(`Can you help me with ${title.toLowerCase()}?`);
         setShowForm(true);
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-
-        try {
-            const response = await fetch("https://example.com/api/ask", {
-                method: "POST",
-                body: JSON.stringify({ question }),
-            });
-
-            const data = await response.json();
-
-            setAnswer(data.answer);
-            setQuestion("");
-            setShowForm(false);
-        } catch (error) {
-            console.error(error);
-        }
+        // Here you can send the question to a backend API for processing
+        // and set the answer received from the API in the "answer" state
+        setAnswer(`Your question "${question}" is being processed. Please wait for the answer.`);
+        setQuestion("");
+        setShowForm(false);
     };
+
 
     return (
         <div className="container my-5" style={{ padding: "20px" }}>
@@ -67,10 +46,12 @@ const HealthConcerns = () => {
             >
                 {cards.map((card) => (
                     <Card
+                        className="mb-3"
                         key={card.title}
                         style={{ width: "25%", marginBottom: "20px" }}
-                        onClick={() => handleCardClick(card.title, card.endpoint)}
+                        onClick={() => handleCardClick(card.title)}
                     >
+                        <Card.Img variant="top" src={card.imageLink} style={{ height: '150px', objectFit: 'cover' }} />
                         <Card.Body>
                             <Card.Title>{card.title}</Card.Title>
                             <Card.Text>
@@ -82,33 +63,17 @@ const HealthConcerns = () => {
                 ))}
             </div>
             {showForm && (
-                <div className="my-5">
-                    <h3>{question}</h3>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
-                            <Form.Text className="text-muted">
-                                We'll never share your email with anyone else.
-                            </Form.Text>
-                        </Form.Group>
-
-                        <Form.Group controlId="formBasicQuestion">
-                            <Form.Label>Question</Form.Label>
-                            <Form.Control as="textarea" rows={3} placeholder={"Ask your Question here"} onChange={(e) => setQuestion(e.target.value)} />
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                </div>
+                <Form onSubmit={handleSubmit} className="mt-3">
+                    <Form.Group controlId="formQuestion">
+                        <Form.Label>Ask your question here: </Form.Label>
+                        <Form.Control type="text" placeholder="Enter your question" onChange={(e) => setQuestion(e.target.value)} />
+                    </Form.Group>
+                    <Button className="mt-1" variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
             )}
-            {answer && (
-                <div className="my-5">
-                    <h3>Your answer:</h3>
-                    <p>{answer}</p>
-                </div>
-            )}
+            {answer && <p className="mt-3">{answer}</p>}
         </div>
     );
 };

@@ -147,7 +147,7 @@ import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import axios from 'axios';
 
-function MedicineCard({ medicineName, medicinePrice, medicineStock, medicineId, imageLink ,onAddToCart }) {
+function MedicineCard({ medicineName, medicinePrice, medicineStock, medicineId, imageLink, onAddToCart }) {
   const handleAddToCart = () => {
     onAddToCart(medicineId);
   };
@@ -189,12 +189,47 @@ function Medicine() {
       });
   }
 
+  const [sortDirection, setSortDirection] = useState('asc');
+
   const handleSortByName = () => {
-    const sortedMedicines = [...medicines].sort((a, b) =>
-      a.medicineName.localeCompare(b.medicineName)
-    );
+    const sortedMedicines = [...medicines].sort((a, b) => {
+      if (sortDirection === 'asc') {
+        return a.medicinePrice - b.medicinePrice;
+      } else {
+        return b.medicinePrice - a.medicinePrice;
+      }
+    });
+
+    setMedicines(sortedMedicines);
+
+    if (sortDirection === 'asc') {
+      setSortDirection('desc');
+    } else {
+      setSortDirection('asc');
+    }
+  };
+
+  const sortButtonText = sortDirection === 'asc' ? 'Sort Ascending' : 'Sort Descending';
+
+
+  const handleSortByPrice = () => {
+    const sortedMedicines = [...medicines].sort((a, b) => a.medicinePrice - b.medicinePrice);
     setMedicines(sortedMedicines);
   };
+
+  const handleSort = () => {
+    const sortedMedicines = [...medicines].sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.medicinePrice - b.medicinePrice;
+      } else {
+        return b.medicinePrice - a.medicinePrice;
+      }
+    });
+    setMedicines(sortedMedicines);
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  };
+
+  const [sortOrder, setSortOrder] = useState('asc');
 
   const handleAddToCart = (medicineId) => {
     axios.post(`http://localhost:9090/cart/add-medicine-to-cart?medicineId=${medicineId}&userId=${localStorage.getItem("userId")}&quantity=1`)
@@ -209,10 +244,6 @@ function Medicine() {
   };
 
   useEffect(() => {
-    // const interval = setInterval(() => {
-    //   fetchMedicines();
-    // }, 2000); // fetch medicines every 5 seconds
-
     return () => fetchMedicines();
   }, []);
 
@@ -221,8 +252,9 @@ function Medicine() {
       <div className="d-flex justify-content-between align-items-center">
         <h1 className="mb-0">Medicines</h1>
         <Button variant="primary" onClick={handleSortByName}>
-          Sort
+          {sortButtonText}
         </Button>
+
       </div>
       <Row>
         {medicines.map((medicine) => (
