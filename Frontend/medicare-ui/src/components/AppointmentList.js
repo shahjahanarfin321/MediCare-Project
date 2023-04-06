@@ -29,9 +29,9 @@ function AppointmentList() {
         <thead>
           <tr>
             <th>Appointment Category</th>
-            <th>Appointment Date</th>
-            <th>Appointment Time</th>
             <th>Mobile No.</th>
+            <th>Appointment Time</th>
+            <th>Appointment Date</th>
           </tr>
         </thead>
         <tbody>

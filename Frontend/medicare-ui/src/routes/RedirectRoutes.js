@@ -11,6 +11,7 @@ import HealthCareTest from '../components/HealthCareTest';
 import HealthConcerns from '../components/HealthConcerns';
 import HealthLibrary from '../components/HealthLibrary';
 import Home from '../components/Home';
+import LabTestList from '../components/LabTestList';
 import Login from '../components/Login';
 import ManageProductPage from '../components/ManageProductPage';
 import Medicine from '../components/Medicine';
@@ -41,6 +42,7 @@ function RedirectRoutes() {
                 <Route path='/appointmentList' exact element={<AppointmentList />}/>
                 <Route path='/doctorappointment' exact element={<DoctorAppointment />}/>
                 <Route path='/createdoctorappointment' exact element={<CreateDoctorAppointment />}/>
+                <Route path='/labtest' exact element={<LabTestList />}/>
             </Routes>
         </BrowserRouter>
     );

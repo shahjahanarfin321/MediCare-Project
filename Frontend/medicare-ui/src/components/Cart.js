@@ -28,7 +28,51 @@ function Cart() {
     const total = updatedOrders.reduce((acc, curr) => acc + curr.medicines.medicinePrice * curr.quantity, 0);
     setTotalPrice(total);
   };
-  
+
+  const increaseQuantity = (order) => {
+    axios.put(`http://localhost:9090/cart/increaseQuantity/${order.cartId}`)
+      .then(response => {
+        const updatedOrders = orders.map(o => {
+          if (o.cartId === order.cartId) {
+            return { ...o, quantity: o.quantity + 1 };
+          }
+          return o;
+        });
+        setOrders(updatedOrders);
+        const total = updatedOrders.reduce((acc, curr) => acc + curr.medicines.medicinePrice * curr.quantity, 0);
+        setTotalPrice(total);
+      })
+      .catch(error => console.error(error));
+  };
+
+  const decreaseQuantity = (order) => {
+    axios.put(`http://localhost:9090/cart/decreaseQuantity/${order.cartId}`)
+      .then(response => {
+        const updatedOrders = orders.map(o => {
+          if (o.cartId === order.cartId) {
+            return { ...o, quantity: o.quantity - 1 };
+          }
+          return o;
+        });
+        setOrders(updatedOrders);
+        const total = updatedOrders.reduce((acc, curr) => acc + curr.medicines.medicinePrice * curr.quantity, 0);
+        setTotalPrice(total);
+      })
+      .catch(error => console.error(error));
+  };
+
+  const handleRemoveFromCart = (order) => {
+    axios.delete(`http://localhost:9090/cart/delete-cart?cartId=${order.cartId}`)
+      .then(response => {
+        const updatedOrders = orders.filter(o => o.cartId !== order.cartId);
+        setOrders(updatedOrders);
+        const total = updatedOrders.reduce((acc, curr) => acc + curr.medicines.medicinePrice * curr.quantity, 0);
+        setTotalPrice(total);
+      })
+      .catch(error => console.error(error));
+  };
+
+
   return (
     <Container className="my-5">
       <Row>
@@ -41,34 +85,43 @@ function Cart() {
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {orders.map((order) => (
                 <tr key={order.cartId}>
                   <td>
-                    <img src="https://via.placeholder.com/100x100" alt="Product" />
+                    {/* <img src={order.medicines.imageLink} alt="Product" /> */}
                     <span className="ml-3">{order.medicines.medicineName}</span>
                   </td>
                   <td>{order.medicines.medicinePrice}</td>
                   <td>
-                    <Button 
-                      variant="outline-secondary" 
-                      onClick={() => handleQuantityChange(order, -1)}
+                    <Button
+                      variant="outline-secondary"
+                      onClick={() => decreaseQuantity(order)}
                       disabled={order.quantity === 1}
                     >
                       -
                     </Button>
                     <span className="mx-2">{order.quantity}</span>
-                    <Button 
-                      variant="outline-secondary" 
-                      onClick={() => handleQuantityChange(order, 1)}
+                    <Button
+                      variant="outline-secondary"
+                      onClick={() => increaseQuantity(order)}
                       disabled={order.quantity === order.medicines.medicineStock}
                     >
                       +
                     </Button>
                   </td>
                   <td>${order.medicines.medicinePrice * order.quantity}</td>
+                  <td>
+                    <Button
+                      variant='danger'
+                      onClick={() => handleRemoveFromCart(order)}
+                    >
+                      Remove
+                    </Button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -77,13 +130,13 @@ function Cart() {
         <Col md={4}>
           <div className="d-flex flex-column align-items-center">
             <h4>All Total: ${totalPrice.toFixed(2)}</h4>
-            <Button variant="primary" className="mt-3">Proceed to Pay</Button>
+            <Button variant="primary" className="mt-3">Confirm Your Order</Button>
           </div>
         </Col>
       </Row>
     </Container>
   );
-  
+
 }
 
 export default Cart;

@@ -7,6 +7,7 @@ const CreateMedicine = () => {
     medicineName: "",
     medicinePrice: "",
     medicineStock: "",
+    imageLink: "",
   });
 
   const handleInputChange = (event) => {
@@ -25,6 +26,7 @@ const CreateMedicine = () => {
         medicineName: "",
         medicinePrice: "",
         medicineStock: "",
+        imageLink: "",
       });
     });
   };
@@ -67,6 +69,17 @@ const CreateMedicine = () => {
                 value={medicine.medicineStock}
                 onChange={handleInputChange}
                 placeholder="Enter medicine stock"
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="medicineStock">
+              <Form.Label>Medicine Image Link</Form.Label>
+              <Form.Control
+                type="text"
+                name="imageLink"
+                value={medicine.imageLink}
+                onChange={handleInputChange}
+                placeholder="Enter medicine image link"
                 required
               />
             </Form.Group>

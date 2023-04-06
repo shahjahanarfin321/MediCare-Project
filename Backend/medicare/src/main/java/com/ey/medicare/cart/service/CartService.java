@@ -5,10 +5,12 @@ import com.ey.medicare.cart.repository.CartRepository;
 import com.ey.medicare.medicines.entity.Medicines;
 import com.ey.medicare.medicines.repository.MedicineRepository;
 import com.ey.medicare.users.repository.UsersRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CartService {
@@ -43,17 +45,40 @@ public class CartService {
         return cartRepository.save(cart);
     }
 
-
-//    public Cart addToCart(Long medicineId, Long userId, Integer quantity) {
-//        Cart cart = new Cart();
-//        Medicines medicine = medicineRepository.findByMedicineId(medicineId);
-//        cart.setMedicines(medicine);
-//        cart.setUserId(userId);
-//        cart.setQuantity(quantity);
-//        return cartRepository.save(cart);
-//    }
-
     public List<Cart> getCartByUserId(Long userId) {
-        return cartRepository.findByUserId(userId);
+        List<Cart> cartList= cartRepository.findByUserId(userId);
+        return cartList.stream()
+                .filter(cart -> cart.getWhetherOrdered() == null || !cart.getWhetherOrdered())
+                .collect(Collectors.toList());
+    }
+
+    public void deleteCartByCartId(Long cartId) {
+        Cart cart = cartRepository.findByCartId(cartId);
+        cartRepository.delete(cart);
+    }
+
+    public void markAsOrdered(Long cartId) {
+        Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(() -> new EntityNotFoundException("Cart not found with id " + cartId));
+        cart.setWhetherOrdered(true);
+        cartRepository.save(cart);
+    }
+
+    public Cart increaseCartQuantity(Long cartId) {
+        Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(() -> new EntityNotFoundException("Cart not found with id " + cartId));
+        int currentQuantity = cart.getQuantity();
+        int newQuantity = currentQuantity + 1;
+        cart.setQuantity(newQuantity);
+        return cartRepository.save(cart);
+    }
+
+    public Cart decreaseCartQuantity(Long cartId) {
+        Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(() -> new EntityNotFoundException("Cart not found with id " + cartId));
+        int currentQuantity = cart.getQuantity();
+        int newQuantity = currentQuantity - 1;
+        cart.setQuantity(newQuantity);
+        return cartRepository.save(cart);
     }
 }

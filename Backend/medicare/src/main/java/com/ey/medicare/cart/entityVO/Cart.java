@@ -16,6 +16,8 @@ public class Cart {
 
     private Integer quantity;
 
+    private Boolean whetherOrdered;
+
     public Cart() {
     }
 
@@ -23,7 +25,14 @@ public class Cart {
         this.medicines = medicines;
         this.userId = userId;
         this.quantity = quantity;
+        this.whetherOrdered = false;
     }
+
+//    public Cart(Medicines medicines, Long userId, Integer quantity) {
+//        this.medicines = medicines;
+//        this.userId = userId;
+//        this.quantity = quantity;
+//    }
 
     public Long getCartId() {
         return cartId;
@@ -55,6 +64,14 @@ public class Cart {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Boolean getWhetherOrdered() {
+        return whetherOrdered;
+    }
+
+    public void setWhetherOrdered(Boolean whetherOrdered) {
+        this.whetherOrdered = whetherOrdered;
     }
 }
 

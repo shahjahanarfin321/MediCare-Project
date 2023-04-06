@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { FaHeartbeat, FaFlask, FaDiagnoses, FaFileMedicalAlt, FaTint, FaVial, FaUserMd } from 'react-icons/fa';
@@ -28,13 +29,20 @@ function HealthTestForm({ testTitle, onClose }) {
     const [name, setName] = useState('');
     const [mobile, setMobile] = useState('');
     const [pincode, setPincode] = useState('');
-    const [packages, setPackages] = useState('');
     const [agreed, setAgreed] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission
-    };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post("http://localhost:9090/lab-tests/create-lab-test",{
+            testType: testTitle,
+            fullName: name,
+            mobileNumber: mobile,
+            pinCode: pincode,
+            userId: localStorage.getItem("userId")
+        }).then(() => {
+          alert('Test Booked Successfully Successfully');
+        });
+      };
 
     return (
         <div className="overlay">
@@ -52,15 +60,6 @@ function HealthTestForm({ testTitle, onClose }) {
                     <Form.Group controlId="formPincode">
                         <Form.Label>Pincode</Form.Label>
                         <Form.Control type="text" placeholder="Enter your pincode" value={pincode} onChange={(e) => setPincode(e.target.value)} required />
-                    </Form.Group>
-                    <Form.Group controlId="formPackage">
-                        <Form.Label>Select Package</Form.Label>
-                        <Form.Control as="select" value={packages} onChange={(e) => setPackages(e.target.value)} required>
-                            <option value="">Select a package</option>
-                            <option value="Package A">Package A</option>
-                            <option value="Package B">Package B</option>
-                            <option value="Package C">Package C</option>
-                        </Form.Control>
                     </Form.Group>
                     <Form.Group controlId="formAgreed">
                         <Form.Check type="checkbox" label="I agree to the terms and conditions" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} required />

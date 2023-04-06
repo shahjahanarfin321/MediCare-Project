@@ -12,6 +12,7 @@ const UpdateMedicine = ({ match }) => {
         medicineName: "",
         medicinePrice: "",
         medicineStock: "",
+        imageLink: "",
     });
 
     useEffect(() => {
@@ -71,6 +72,16 @@ const UpdateMedicine = ({ match }) => {
                                 type="number"
                                 name="medicineStock"
                                 value={medicine.medicineStock}
+                                onChange={handleInputChange}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Medicine Image Link</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="imageLink"
+                                value={medicine.imageLink}
                                 onChange={handleInputChange}
                             />
                         </Form.Group>
