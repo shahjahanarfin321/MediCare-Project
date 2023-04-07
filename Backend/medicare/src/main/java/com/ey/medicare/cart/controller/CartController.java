@@ -32,5 +32,28 @@ public class CartController {
     private List<Cart> getCartByUserId(@RequestParam Long userId) {
         return cartService.getCartByUserId(userId);
     }
+
+    @DeleteMapping("/delete-cart")
+    private void deleteCartByCartId(@RequestParam Long cartId) {
+        cartService.deleteCartByCartId(cartId);
+    }
+
+    @PutMapping("/{cartId}/markAsOrdered")
+    public ResponseEntity<?> markAsOrdered(@PathVariable Long cartId) {
+        cartService.markAsOrdered(cartId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/increaseQuantity/{cartId}")
+    public ResponseEntity<Cart> increaseCartQuantity(@PathVariable Long cartId) {
+        Cart updatedCart = cartService.increaseCartQuantity(cartId);
+        return ResponseEntity.ok(updatedCart);
+    }
+
+    @PutMapping("/decreaseQuantity/{cartId}")
+    public ResponseEntity<Cart> decreaseCartQuantity(@PathVariable Long cartId) {
+        Cart updatedCart = cartService.decreaseCartQuantity(cartId);
+        return ResponseEntity.ok(updatedCart);
+    }
 }
 
