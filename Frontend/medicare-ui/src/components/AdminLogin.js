@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
-import { NavItem } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 
 function AdminLogin() {
@@ -19,7 +18,6 @@ function AdminLogin() {
                     localStorage.setItem('userId', response.data.userId);
                     localStorage.setItem('email', response.data.email);
                     navigate('/medicine');
-                    // window.location.href="/medicine";
                 }
             })
             .catch(error => {

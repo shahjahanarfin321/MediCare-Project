@@ -25,6 +25,11 @@ function NavbarCollapse() {
     handleToggle();
   };
 
+  const hancleMyOrders = () => {
+    navigate("/myorders");
+    handleToggle();
+  };
+
   const isAdmin = localStorage.getItem("email") === "admin@gmail.com";
 
   return (
@@ -95,6 +100,8 @@ function NavbarCollapse() {
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handleAppointment}>My Appointment</NavDropdown.Item>
                 <NavDropdown.Divider />
+                <NavDropdown.Item onClick={hancleMyOrders}>My Orders</NavDropdown.Item>
+                <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
               </NavDropdown>
               <Nav.Item>
@@ -118,7 +125,7 @@ function NavbarCollapse() {
     </NavLink>
     </Nav.Item>
     <Nav.Item>
-    <NavLink to="/contact" className="nav-link" onClick={handleToggle}>
+    <NavLink to="/contactus" className="nav-link" onClick={handleToggle}>
     Contact
     </NavLink>
     </Nav.Item>

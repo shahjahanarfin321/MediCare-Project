@@ -30,7 +30,7 @@ function LabTestList() {
             <tr key={labTest.testId}>
               <td>{labTest.testType}</td>
               <td>{labTest.fullName}</td>
-              <td>{labTest.mobileNumber}</td>
+              <td>+91 {labTest.mobileNumber}</td>
               <td>{labTest.pinCode}</td>
             </tr>
           ))}

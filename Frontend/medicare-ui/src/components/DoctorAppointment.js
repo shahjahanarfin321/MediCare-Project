@@ -56,9 +56,9 @@ function DoctorAppointment() {
             <Card className="mb-3" onClick={() => handleSelectAppointment(appointment)}>
             <Card.Img variant="top" src={appointment.imageLink} style={{ height: '150px', objectFit: 'cover' }} />
               <Card.Body>
-                <Card.Title>{appointment.doctorName}</Card.Title>
+                <Card.Title id='doctorname'>{appointment.doctorName}</Card.Title>
                 <Card.Text>{appointment.category}</Card.Text>
-                <Card.Text>Rs. {appointment.price}</Card.Text>
+                <Card.Text style={{ color: 'green' ,fontWeight: 'bold'}}>Rs. {appointment.price}</Card.Text>
               </Card.Body>
             </Card>
           </div>
@@ -68,12 +68,13 @@ function DoctorAppointment() {
         <div className="my-5">
           <h2>Chat with our doctors instantly - {selectedAppointment.category}</h2>
           <Form>
-            <Form.Group controlId="formMobileNumber">
+            <Form.Group>
               <Form.Label>Mobile Number</Form.Label>
-              <InputGroup>
+              <InputGroup controlId='formmobile'>
                 <InputGroup.Text>+91</InputGroup.Text>
 
                 <Form.Control
+                  id='mobilenumber'
                   type="text"
                   placeholder="Enter 10-digit mobile number"
                   value={mobileNumber}

@@ -1,12 +1,12 @@
 import axios from "axios";
-import React, { Component } from "react";
+import React from "react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import UserService from "../service/MedicineService";
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMsg,setErrorMsg] = useState('');
 
     const navigate = useNavigate();
 
@@ -20,26 +20,17 @@ function Login() {
                     localStorage.setItem('email', response.data.email);
                     navigate('/medicine');
                     // window.location.href="/medicine";
+                    setErrorMsg('');
+                }
+                else {
+                    setErrorMsg("Invalid Username/ Password");
                 }
             })
             .catch(error => {
+                alert("Invalid username or password");
                 console.log(error);
             });
     }
-
-
-    // const handleLoginSubmit = UserService.getUsersLogin(email,password).then(response => {
-    //     // If the user is logged in, redirect to the dashboard page
-    //     if (response.data) {
-    //         localStorage.setItem('userId', response.data.userId);
-    //         localStorage.setItem('email', response.data.email);
-    //         navigate('/medicine');
-    //         // window.location.href="/medicine";
-    //     }
-    // }
-    // );
-
-
 
     return (
         <div className="App">
@@ -64,6 +55,7 @@ function Login() {
 
                             {/* <!-- Submit button --> */}
                             <button type="submit" class="btn btn-primary btn-block mb-4" >Sign in</button>
+                            <p className="mt-2 text-danger">{errorMsg}</p>
 
                             {/* <!-- Register buttons --> */}
                             <div class="text-center">

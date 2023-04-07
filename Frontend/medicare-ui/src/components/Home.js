@@ -1,29 +1,67 @@
-import { Container, Button } from 'react-bootstrap';
+import { Container, Button, Row, Col, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function WelcomeScreen() {
-    return (
-        <div className="welcome-screen d-flex align-items-center justify-content-center">
-            <Container className="text-center">
-                <h1 className="mb-4">Welcome to Medi-Care</h1>
-                <p className="lead mb-4">
-                    Your one stop place for all your medicines.
-                </p>
-                <Button variant="primary">Shop Now</Button>
-            </Container>
-        </div>
-    );
-}
+    const navigate = useNavigate();
 
+    const handleLogin = () => {
+        navigate("/login");
+    };
+  return (
+    <div className="text-center" style={{ color: 'white' }}>
+      <h1>Welcome to our Medi-Care</h1>
+      <Row className="mt-5">
+        <Col sm={4}>
+          <Card className="bg-dark text-white">
+            <Card.Body>
+              <Card.Title>Shop for Medicine</Card.Title>
+              <Card.Text style={{ fontSize: '1.25rem', lineHeight: '1.5' }}>
+                Browse our wide selection of prescription and over-the-counter medications.
+              </Card.Text>
+              <Button variant="primary" onClick={handleLogin}>Shop Now</Button>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col sm={4}>
+          <Card className="bg-dark text-white">
+            <Card.Body>
+              <Card.Title>Create Appointment with Doctor</Card.Title>
+              <Card.Text style={{ fontSize: '1.25rem', lineHeight: '1.5' }}>
+                Schedule an appointment with one of our experienced doctors for a consultation.
+              </Card.Text>
+              <Button variant="primary" onClick={handleLogin}>Book Appointment</Button>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col sm={4}>
+          <Card className="bg-dark text-white">
+            <Card.Body>
+              <Card.Title>Take Appointment for Lab Test</Card.Title>
+              <Card.Text className='pb-4' style={{ fontSize: '1.25rem', lineHeight: '1.5' }}>
+                Schedule an appointment for a lab test with one of our partner labs.
+              </Card.Text>
+              
+              <Button variant="primary" onClick={handleLogin}>Book Appointment</Button>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </div>
+  );
+}
 
 function Home() {
-    return (
-
-        <div className="App">
-            <div className="App-header">
-                <WelcomeScreen />
-                {/* <AboutUs/> */}
-            </div>
+  return (
+    <>
+      <div className="App">
+        <div className="App-header">
+          <Container fluid className="p-0">
+            <WelcomeScreen />
+          </Container>
         </div>
-    );
+      </div>
+    </>
+  );
 }
+
 export default Home;

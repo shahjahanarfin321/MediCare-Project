@@ -17,18 +17,6 @@ function Cart() {
       .catch(error => console.error(error));
   }, []);
 
-  const handleQuantityChange = (order, delta) => {
-    const updatedOrders = orders.map(o => {
-      if (o.cartId === order.cartId) {
-        return { ...o, quantity: o.quantity + delta };
-      }
-      return o;
-    });
-    setOrders(updatedOrders);
-    const total = updatedOrders.reduce((acc, curr) => acc + curr.medicines.medicinePrice * curr.quantity, 0);
-    setTotalPrice(total);
-  };
-
   const increaseQuantity = (order) => {
     axios.put(`http://localhost:9090/cart/increaseQuantity/${order.cartId}`)
       .then(response => {

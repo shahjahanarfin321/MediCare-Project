@@ -81,4 +81,11 @@ public class CartService {
         cart.setQuantity(newQuantity);
         return cartRepository.save(cart);
     }
+
+    public List<Cart> getMyOrders(Long userId) {
+        List<Cart> cartList= cartRepository.findByUserId(userId);
+        return cartList.stream()
+                .filter(cart -> cart.getWhetherOrdered() == true)
+                .collect(Collectors.toList());
+    }
 }
