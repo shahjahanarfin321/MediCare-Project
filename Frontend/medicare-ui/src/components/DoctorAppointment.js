@@ -58,7 +58,7 @@ function DoctorAppointment() {
               <Card.Body>
                 <Card.Title>{appointment.doctorName}</Card.Title>
                 <Card.Text>{appointment.category}</Card.Text>
-                <Card.Text>{appointment.price}</Card.Text>
+                <Card.Text>Rs. {appointment.price}</Card.Text>
               </Card.Body>
             </Card>
           </div>

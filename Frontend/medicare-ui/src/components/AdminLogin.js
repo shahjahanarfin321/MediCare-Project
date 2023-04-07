@@ -1,17 +1,37 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { NavItem } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function AdminLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
+
+    const handleLoginSubmit = async (event) => {
+        event.preventDefault();
+        axios.get('http://localhost:9090/users/login?email=' + email + '&password=' + password)
+            .then(response => {
+                // If the user is logged in, redirect to the dashboard page
+                if (response.data) {
+                    localStorage.setItem('userId', response.data.userId);
+                    localStorage.setItem('email', response.data.email);
+                    navigate('/medicine');
+                    // window.location.href="/medicine";
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
     return (
         <div className="App">
             <div className="App-header">
                 <div class="container-fluid h-100">
                     <div class="row h-100 justify-content-center align-items-center">
-                        <form>
+                        <form onSubmit={handleLoginSubmit}>
                             <h2 className='mb-4'>Admin Login</h2>
                             {/* <!-- Email input --> */}
                             <div class="form-outline mb-4">

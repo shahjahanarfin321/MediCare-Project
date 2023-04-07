@@ -39,7 +39,7 @@ function AppointmentList() {
             <tr key={appointment.id}>
               <td>{appointment.appointmentCategory}</td>
               <td>{appointment.mobileNo}</td>
-              <td style={{ color: 'green' }}>{appointment.appointmentDate}</td>
+              <td style={{ color: 'green' }}>+91 {appointment.appointmentDate}</td>
               <td style={{ color: 'green' }}>{appointment.appointmentTime}</td>
             </tr>
           ))}

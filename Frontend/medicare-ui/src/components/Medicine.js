@@ -159,9 +159,9 @@ function MedicineCard({ medicineName, medicinePrice, medicineStock, medicineId, 
         <Card.Body>
           <Card.Title>{medicineName}</Card.Title>
           <Card.Text>
-            ${medicinePrice}
+            Rs. {medicinePrice}
             <br />
-            Stock: {medicineStock}
+            {/* <p style={{ color: 'green' ,fontWeight: 'bold'}}>Stock: {medicineStock}</p> */}
           </Card.Text>
           <Button variant="primary" onClick={handleAddToCart}>
             Add to Cart

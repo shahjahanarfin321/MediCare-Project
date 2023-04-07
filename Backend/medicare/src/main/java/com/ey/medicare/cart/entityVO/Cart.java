@@ -25,7 +25,7 @@ public class Cart {
         this.medicines = medicines;
         this.userId = userId;
         this.quantity = quantity;
-        this.whetherOrdered = false;
+        this.whetherOrdered = null;
     }
 
 //    public Cart(Medicines medicines, Long userId, Integer quantity) {
