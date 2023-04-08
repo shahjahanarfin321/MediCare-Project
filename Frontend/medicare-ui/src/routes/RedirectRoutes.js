@@ -19,6 +19,8 @@ import Medicine from '../components/Medicine';
 import NavbarCollapse from '../components/NavbarCollapse';
 import Register from '../components/Register';
 import UpdateMedicine from '../components/UpdateMedicine';
+import OrderList from '../components/OrderList';
+import ContactForm from '../components/ContactForm';
 
 
 function RedirectRoutes() {
@@ -45,6 +47,8 @@ function RedirectRoutes() {
                 <Route path='/createdoctorappointment' exact element={<CreateDoctorAppointment />}/>
                 <Route path='/labtest' exact element={<LabTestList />}/>
                 <Route path='/createhealthconcerns' exact element={<CreateHealthConcern />}/>
+                <Route path='/myorders' exact element={<OrderList />}/>
+                <Route path='/contactus' exact element={<ContactForm />}/>
             </Routes>
         </BrowserRouter>
     );

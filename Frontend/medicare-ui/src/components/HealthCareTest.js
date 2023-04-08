@@ -40,7 +40,7 @@ function HealthTestForm({ testTitle, onClose }) {
             pinCode: pincode,
             userId: localStorage.getItem("userId")
         }).then(() => {
-          alert('Test Booked Successfully Successfully');
+          alert('Test Booked Successfully');
         });
       };
 

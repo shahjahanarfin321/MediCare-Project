@@ -28,20 +28,21 @@ public class CartService {
         if (quantity < 1) {
             quantity = 1; // Setting the minimum quantity to 1
         }
-        List<Cart> carts = cartRepository.findByUserId(userId);
-        for (Cart cart : carts) {
-            if (cart.getMedicines().getMedicineId().equals(medicineId)) {
-                if(cart.getQuantity()<cart.getMedicines().getMedicineStock()) {
-                    cart.setQuantity(cart.getQuantity() + quantity);
-                }
-                else cart.setQuantity(Math.toIntExact(cart.getMedicines().getMedicineStock()));
-                return cartRepository.save(cart);
-            }
-        }
+//        List<Cart> carts = cartRepository.findByUserId(userId);
+//        for (Cart cart : carts) {
+//            if (cart.getMedicines().getMedicineId().equals(medicineId)) {
+//                if(cart.getQuantity()<cart.getMedicines().getMedicineStock()) {
+//                    cart.setQuantity(cart.getQuantity() + quantity);
+//                }
+//                else cart.setQuantity(Math.toIntExact(cart.getMedicines().getMedicineStock()));
+//                return cartRepository.save(cart);
+//            }
+//        }
         Cart cart = new Cart();
         cart.setMedicines(medicine);
         cart.setUserId(userId);
         cart.setQuantity(quantity);
+        cart.setWhetherOrdered(false);
         return cartRepository.save(cart);
     }
 
@@ -58,8 +59,7 @@ public class CartService {
     }
 
     public void markAsOrdered(Long cartId) {
-        Cart cart = cartRepository.findById(cartId)
-                .orElseThrow(() -> new EntityNotFoundException("Cart not found with id " + cartId));
+        Cart cart = cartRepository.findByCartId(cartId);
         cart.setWhetherOrdered(true);
         cartRepository.save(cart);
     }
@@ -80,5 +80,12 @@ public class CartService {
         int newQuantity = currentQuantity - 1;
         cart.setQuantity(newQuantity);
         return cartRepository.save(cart);
+    }
+
+    public List<Cart> getMyOrders(Long userId) {
+        List<Cart> cartList= cartRepository.findByUserId(userId);
+        return cartList.stream()
+                .filter(cart -> cart.getWhetherOrdered() == true)
+                .collect(Collectors.toList());
     }
 }

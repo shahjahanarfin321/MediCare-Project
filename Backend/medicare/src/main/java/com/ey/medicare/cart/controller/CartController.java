@@ -55,5 +55,10 @@ public class CartController {
         Cart updatedCart = cartService.decreaseCartQuantity(cartId);
         return ResponseEntity.ok(updatedCart);
     }
+
+    @GetMapping("/get-my-orders")
+    private List<Cart> getMyOrders(@RequestParam Long userId) {
+        return cartService.getMyOrders(userId);
+    }
 }
 

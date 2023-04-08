@@ -5,7 +5,6 @@ import axios from 'axios';
 function AppointmentList() {
   const [appointments, setAppointments] = useState([]);
   const userId = localStorage.getItem("userId");
-  console.log(userId);
 
   useEffect(() => {
     fetchAppointments();
@@ -24,7 +23,7 @@ function AppointmentList() {
 
   return (
     <Container className="my-5">
-      <h1 className="mb-4">Appointment List</h1>
+      <h1 className="mb-4">My Appointments</h1>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -38,8 +37,8 @@ function AppointmentList() {
           {appointments.map((appointment) => (
             <tr key={appointment.id}>
               <td>{appointment.appointmentCategory}</td>
-              <td>{appointment.mobileNo}</td>
-              <td style={{ color: 'green' }}>{appointment.appointmentDate}</td>
+              <td>+91 {appointment.mobileNo}</td>
+              <td style={{ color: 'blue' }}>{appointment.appointmentDate}</td>
               <td style={{ color: 'green' }}>{appointment.appointmentTime}</td>
             </tr>
           ))}

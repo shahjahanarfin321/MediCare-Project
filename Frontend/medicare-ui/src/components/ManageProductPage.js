@@ -12,23 +12,7 @@ const ManageProductPage = () => {
         });
     }, []);
 
-    const handleToggle = (id, active) => {
-        const newActive = !active;
-        // axios.put(`http://localhost:9090/medicines/${id}/active?active=${newActive}`).then(() => {
-        //     setMedicines((prevMedicines) =>
-        //         prevMedicines.map((medicine) => {
-        //             if (medicine.medicineId === id) {
-        //                 return {
-        //                     ...medicine,
-        //                     active: newActive
-        //                 };
-        //             } else {
-        //                 return medicine;
-        //             }
-        //         })
-        //     );
-        // });
-    };
+    
 
     return (
         <div className="container py-5">
@@ -46,7 +30,6 @@ const ManageProductPage = () => {
                         <th>Price</th>
                         <th>Stock</th>
                         <th>Active</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,14 +39,7 @@ const ManageProductPage = () => {
                             <td>{medicine.medicineName}</td>
                             <td>{medicine.medicinePrice}</td>
                             <td>{medicine.medicineStock}</td>
-                            <td>
-                                <Button
-                                    variant={medicine.active ? "success" : "danger"}
-                                    onClick={() => handleToggle(medicine.medicineId, medicine.active)}
-                                >
-                                    {medicine.active ? "Active" : "Inactive"}
-                                </Button>
-                            </td>
+                            
                             <td>
                                 <Link to={`/updatemedicine/${medicine.medicineId}`}>
                                     <Button variant="primary" className="me-2">
