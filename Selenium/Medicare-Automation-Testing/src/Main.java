@@ -332,9 +332,15 @@ public class Main {
 
         //Admin login starts
 
-        // Find the login button and click it
-        loginButton = driver.findElement(By.linkText("Login"));
-        loginButton.click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Find the "Admin Login" link and click it
+        WebElement adminLoginLink = driver.findElement(By.linkText("click here"));
+        adminLoginLink.click();
 
         // Wait for the email input to appear
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -445,7 +451,7 @@ public class Main {
 
         //Manage Product ends here
 
-        
+
         // Close the browser
         driver.quit();
     }
