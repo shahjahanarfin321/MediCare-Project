@@ -119,32 +119,32 @@ function NavbarCollapse() {
                   Home
                 </NavLink>
                 </Nav.Item>
-    <Nav.Item>
-    <NavLink to="/about" className="nav-link" onClick={handleToggle}>
-    About
-    </NavLink>
-    </Nav.Item>
-    <Nav.Item>
-    <NavLink to="/contactus" className="nav-link" onClick={handleToggle}>
-    Contact
-    </NavLink>
-    </Nav.Item>
-    </Nav>
-    <Nav>
-    <Nav.Item>
-    <NavLink to="/register" className="nav-link" onClick={handleToggle}>
-    Register
-    </NavLink>
-    </Nav.Item>
-    <Nav.Item>
-    <NavLink to="/login" className="nav-link" onClick={handleToggle}>
-    Login
-    </NavLink>
-    </Nav.Item>
-    </Nav>
-    </Navbar.Collapse>
-    }
-    </Navbar>
+                <Nav.Item>
+                  <NavLink to="/about" className="nav-link" onClick={handleToggle}>
+                    About
+                  </NavLink>
+                </Nav.Item>
+                <Nav.Item>
+                  <NavLink to="/contactus" className="nav-link" onClick={handleToggle}>
+                    Contact
+                  </NavLink>
+                </Nav.Item>
+                </Nav>
+                <Nav>
+                  <Nav.Item>
+                    <NavLink to="/register" className="nav-link" onClick={handleToggle}>
+                      Register
+                    </NavLink>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <NavLink to="/login" className="nav-link" onClick={handleToggle}>
+                      Login
+                    </NavLink>
+                  </Nav.Item>
+                </Nav>
+              </Navbar.Collapse>
+           }
+      </Navbar>
     );
     }
 

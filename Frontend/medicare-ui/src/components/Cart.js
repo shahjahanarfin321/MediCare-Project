@@ -63,7 +63,7 @@ function Cart() {
   const markCartAsOrdered = (cartId) => {
     axios.put(`http://localhost:9090/cart/${cartId}/markAsOrdered`)
       .then(response => {
-        console.log(`Cart with id ${cartId} marked as ordered.`);
+        alert("Your order has been confirmed :) ");
       })
       .catch(error => console.error(`Error marking cart with id ${cartId} as ordered: ${error}`));
   };
@@ -136,7 +136,7 @@ function Cart() {
             <Col md={4}>
               <div className="d-flex flex-column align-items-center">
                 <h4>All Total: Rs. {totalPrice.toFixed(2)}</h4>
-                <Button variant="primary" className="mt-3" onClick={handleConfirmOrder}>Confirm Your Order</Button>
+                <Button id="confirmYourOrder" variant="primary" className="mt-3" onClick={handleConfirmOrder}>Confirm Your Order</Button>
               </div>
             </Col>
           </Row>

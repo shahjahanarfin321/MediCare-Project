@@ -50,6 +50,7 @@ const UpdateMedicine = ({ match }) => {
                                 name="medicineName"
                                 value={medicine.medicineName}
                                 onChange={handleInputChange}
+                                id="medicineName"
                             />
                         </Form.Group>
 
@@ -62,6 +63,7 @@ const UpdateMedicine = ({ match }) => {
                                     name="medicinePrice"
                                     value={medicine.medicinePrice}
                                     onChange={handleInputChange}
+                                    id="medicinePrice"
                                 />
                             </InputGroup>
                         </Form.Group>
@@ -73,6 +75,7 @@ const UpdateMedicine = ({ match }) => {
                                 name="medicineStock"
                                 value={medicine.medicineStock}
                                 onChange={handleInputChange}
+                                id="medicineStock"
                             />
                         </Form.Group>
 
@@ -83,6 +86,7 @@ const UpdateMedicine = ({ match }) => {
                                 name="imageLink"
                                 value={medicine.imageLink}
                                 onChange={handleInputChange}
+                                id="imageLink"
                             />
                         </Form.Group>
                         <Button variant="primary" onClick={handleUpdate}>

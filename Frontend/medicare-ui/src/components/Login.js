@@ -23,7 +23,7 @@ function Login() {
                     setErrorMsg('');
                 }
                 else {
-                    setErrorMsg("Invalid Username/ Password");
+                    setErrorMsg("Invalid email/password");
                 }
             })
             .catch(error => {
@@ -55,7 +55,7 @@ function Login() {
 
                             {/* <!-- Submit button --> */}
                             <button type="submit" class="btn btn-primary btn-block mb-4" >Sign in</button>
-                            <p className="mt-2 text-danger">{errorMsg}</p>
+                            <span className="text-danger" style={{fontSize: 4}}>{errorMsg}</span>
 
                             {/* <!-- Register buttons --> */}
                             <div class="text-center">

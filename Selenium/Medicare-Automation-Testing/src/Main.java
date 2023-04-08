@@ -22,6 +22,10 @@ public class Main {
         // Maximize the window
         driver.manage().window().maximize();
 
+
+
+        //Login Test
+
         // Find the login button and click it
         WebElement loginButton = driver.findElement(By.linkText("Login"));
         loginButton.click();
@@ -30,14 +34,35 @@ public class Main {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("form2Example1")));
 
+        // Wait for 2 seconds
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // Enter the email and password
         emailInput.sendKeys("arfin@gmail.com");
+
+        // Wait for 2 seconds
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         WebElement passwordInput = driver.findElement(By.id("form2Example2"));
         passwordInput.sendKeys("arfin123@");
 
         // Submit the form
         WebElement submitButton = driver.findElement(By.xpath("//button[@type='submit']"));
         submitButton.click();
+
+        //Login Ends here
+
+
+
+        //Add medicine To cart
 
         // Wait for the Medicines page to load
         WebElement medicinesHeading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[text()='Medicines']")));
@@ -71,14 +96,47 @@ public class Main {
         WebElement cartButton = driver.findElement(By.linkText("Cart"));
         cartButton.click();
 
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement confirmButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#confirmYourOrder")));
+
+
+        confirmButton = driver.findElement(By.id("confirmYourOrder"));
+        confirmButton.click();
+
         // Wait for 5 seconds
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        // Wait for the alert to appear and accept it
+        alertWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        alert = alertWait.until(ExpectedConditions.alertIsPresent());
+        alertText = alert.getText();
+        System.out.println("Alert text: " + alertText);
+        alert.accept();
+
+        // Navigate to the "My Orders" page
+        WebElement profileDropdown = driver.findElement(By.linkText("Profile"));
+        profileDropdown.click();
+
+        WebElement myOrders = driver.findElement(By.linkText("My Orders"));
+        myOrders.click();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //Medicine Added to cart ends here
+
+
+
+
 
         //Testing for creating the new doctor appointment
+
         //Go to health Test
         WebElement doctorAppointment = driver.findElement(By.linkText("Doctor Appointment"));
         doctorAppointment.click();
@@ -128,8 +186,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        // Navigate to the "My Lab Test" page
-        WebElement profileDropdown = driver.findElement(By.linkText("Profile"));
+        // Navigate to the "My Appointment" page
+        profileDropdown = driver.findElement(By.linkText("Profile"));
         profileDropdown.click();
 
         WebElement myAppointment = driver.findElement(By.linkText("My Appointment"));
@@ -141,8 +199,11 @@ public class Main {
             e.printStackTrace();
         }
 
+        //Doctor appointment ends here
+
 
         //Testing for creating and seeing the health test
+
         //Go to health Test
         WebElement healthTest = driver.findElement(By.linkText("Health Test"));
         healthTest.click();
@@ -162,10 +223,10 @@ public class Main {
         nameField.sendKeys("John Doe");
 
         WebElement mobileField = driver.findElement(By.id("formMobile"));
-        mobileField.sendKeys("1234567890");
+        mobileField.sendKeys("7845796583");
 
         WebElement pincodeField = driver.findElement(By.id("formPincode"));
-        pincodeField.sendKeys("123456");
+        pincodeField.sendKeys("761008");
 
         WebElement agreedCheckbox = driver.findElement(By.id("formAgreed"));
         agreedCheckbox.click();
@@ -190,9 +251,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        // Navigate to the "My Lab Test" page
+        // Navigate to the "My Profile" page
         profileDropdown = driver.findElement(By.linkText("Profile"));
         profileDropdown.click();
+
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -208,27 +270,183 @@ public class Main {
             e.printStackTrace();
         }
 
+        //Lab test automation ends here
+
+
+        //Navigating and exploring health library
+
+        WebElement healthLibrary = driver.findElement(By.linkText("Health Library"));
+        healthLibrary.click();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //explored health library ends here
+
+
+        //Health Concerns starts
+
+        WebElement healthConcerns = driver.findElement(By.linkText("Health Concerns"));
+        healthConcerns.click();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        WebElement askQustion = driver.findElement(By.xpath("//button[text()='Ask a question']"));
+        askQustion.click();
+
+        WebElement askQuestioninput = driver.findElement(By.id("yourQuestion"));
+        askQuestioninput.sendKeys("I want to have some test related concerns could you help");
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //hit  the submit button
+        WebElement submitQuestion = driver.findElement(By.xpath("//button[text()='Submit']"));
+        submitQuestion.click();
+
+        //Health Concern ends here
+
+
+        //Logout starts here
+
+        // Navigate to the "My Profile" page
+        profileDropdown = driver.findElement(By.linkText("Profile"));
+        profileDropdown.click();
+
+        WebElement logout = driver.findElement(By.linkText("Logout"));
+        logout.click();
+
+        //Logout ends here
 
 
 
+        //Admin login starts
+
+        // Find the login button and click it
+        loginButton = driver.findElement(By.linkText("Login"));
+        loginButton.click();
+
+        // Wait for the email input to appear
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("form2Example1")));
+
+        // Wait for 2 seconds
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Enter the email and password
+        emailInput.sendKeys("admin@gmail.com");
+
+        // Wait for 2 seconds
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        passwordInput = driver.findElement(By.id("form2Example2"));
+        passwordInput.sendKeys("admin");
+
+        // Wait for 2 seconds
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Submit the form
+        submitButton = driver.findElement(By.xpath("//button[@type='submit']"));
+        submitButton.click();
+
+        //Admin login ends here
 
 
 
+        //Visit manage product and edit an entry
 
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement manageProduct = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Manage Product")));
+
+        manageProduct = driver.findElement(By.linkText("Manage Product"));
+        manageProduct.click();
+
+        // Wait for 2 seconds
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        WebElement editButton = driver.findElement(By.xpath("//button[text()='Edit']"));
+        editButton.click();
+
+        // Wait for 2 seconds
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Fill out the form and submit
+        WebElement medicinePrice = driver.findElement(By.id("medicinePrice"));
+        medicinePrice.clear();
+        medicinePrice.sendKeys("40");
+
+        // Wait for 2 seconds
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        WebElement medicineStock = driver.findElement(By.id("medicineStock"));
+        medicineStock.clear();
+        medicineStock.sendKeys("15");
+
+        // Wait for 2 seconds
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        WebElement updateButton = driver.findElement(By.xpath("//button[text()='Update']"));
+        updateButton.click();
+
+        // Wait for the alert to appear and accept it
+        alertWait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        alert = alertWait.until(ExpectedConditions.alertIsPresent());
+        alertText = alert.getText();
+        System.out.println("Alert text: " + alertText);
+        alert.accept();
+
+        // Wait for 2 seconds
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        manageProduct = driver.findElement(By.linkText("Manage Product"));
+        manageProduct.click();
+
+        //Manage Product ends here
+
+        
         // Close the browser
         driver.quit();
     }
 }
-
-
-
-
-//public class Main {
-//    public static void main(String[] args) {
-//        System.setProperty("webdriver.chrome.driver","C:\\Users\\Shahjahan Arfin\\Desktop\\Selenium\\browserdrivers\\chromedriver.exe");
-//        WebDriver driver = new ChromeDriver();
-//        System.out.println("Hello world!");
-//        driver.get("http://www.google.com");
-//        driver.quit();
-//    }
-//}
